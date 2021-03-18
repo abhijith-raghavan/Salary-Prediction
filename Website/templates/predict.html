@@ -1,0 +1,215 @@
+{%extends "layout.html"%}
+    {%block content%}
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Predict Salary</h1>
+          </div>
+
+          <div>
+              <form method="POST" action="{{url_for('predict')}}">
+                <div class="form-group row">
+                    <label for="age" class="col-sm-2 col-form-label">Age</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="age" name="age" placeholder="Enter age" required="true">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="workclass" class="col-sm-2 col-form-label">Work Class</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" id="workclass" name="workclass" required="true">
+                        <option selected="true" disabled="disabled">Choose Work Class</option>
+                        <option value="1">Federal Government</option>
+                        <option value="2">Local Government</option>
+                        <option value="3">Never Worked</option>
+                        <option value="4">Private</option>
+                        <option value="5">Self Employeed inc</option>
+                        <option value="6">Self-emp-not-inc</option>
+                        <option value="7">State-gov</option>
+                        <option value="8">Without-pay</option>
+                        <option value="0">Unknow</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="education" class="col-sm-2 col-form-label">Education</label>
+                    <div class="col-sm-10">
+                          <select class="form-control" id="education" name="education" required="true">
+                            <option selected="true" disabled="disabled"> Choose Education Qualification</option>
+                            <option value="11">HS Grad</option>
+                            <option value="9">Bachelor's</option>
+                            <option value="12">Master's</option>
+                            <option value="10">Doctorate</option>
+                            <option value="15">Some College</option>
+                            <option value="7">Associate Academy</option>
+                            <option value="8">Associate VOC</option>
+                            <option value="14">Prof School</option>
+                            <option value="13">Pre School</option>
+                            <option value="2">12th</option>
+                            <option value="1">11th</option>
+                            <option value="0">10th</option>
+                            <option value="6">9th</option>
+                            <option value="5">7th-8th</option>
+                            <option value="4">5th-6th</option>
+                            <option value="3">1st-4th</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="education_num" class="col-sm-2 col-form-label">Education Period</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="education_num" name="education_num" placeholder="Enter Education Years" required="true">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="marital_status" class="col-sm-2 col-form-label">Marital Status</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" id="marital_status" name="marital_status" required="true">
+                        <option selected="true" disabled="disabled">Choose Marital Status</option>
+                        <option value="0">Married AF Spouse</option>
+                        <option value="1">Married civ Spouse</option>
+                        <option value="2">Married Spouse Absent</option>
+                        <option value="3">Never Married</option>
+                        <option value="4">Separated</option>
+                        <option value="5">Widowed</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="occupation" class="col-sm-2 col-form-label">Occupation</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" id="occupation" name="occupation" required="true">
+                        <option selected="true" disabled="disabled">Choose Occupation</option>
+                        <option value="1">Admin Clerical</option>
+                        <option value="2">Armed Forces</option>
+                        <option value="3">Craft Repair</option>
+                        <option value="4">Exec Managerial</option>
+                        <option value="5">Farming Fishing</option>
+                        <option value="6">Handlers Cleaners</option>
+                        <option value="7">Machine op inspct</option>
+                        <option value="8">Other Service</option>
+                        <option value="9">Private house service</option>
+                        <option value="10">Prof specialty</option>
+                        <option value="11">Protective service</option>
+                        <option value="12">Sales</option>
+                        <option value="13">Tech Support</option>
+                        <option value="14">Transport Moving</option>
+                        <option value="0">Unknown</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="relationship" class="col-sm-2 col-form-label">Relationship</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" id="relationship" name="relationship" required="true">
+                        <option selected="true" disabled="disabled">Choose Relationship</option>
+                        <option value="0">Husband</option>
+                        <option value="5">Wife</option>
+                        <option value="3">Own Child</option>
+                        <option value="4">Unmarried</option>
+                        <option value="1">Not-in-family</option>
+                        <option value="2">Other-relative</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="race" class="col-sm-2 col-form-label">Race</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" id="race" name="race" required="true">
+                        <option selected="true" disabled="disabled">Choose Race</option>
+                        <option value="0">Amer-Indian-Eskimo</option>
+                        <option value="1">Asian-Pac-Islander</option>
+                        <option value="2">Black</option>
+                        <option value="4">White</option>
+                        <option value="3">Other</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="sex" class="col-sm-2 col-form-label">Gender</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" id="sex" name="sex" required="true">
+                        <option selected="true" disabled="disabled">Choose Gender</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                        <option value="2">Other</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="capital_gain" class="col-sm-2 col-form-label">Capital Gain</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="capital_gain" name="capital_gain" placeholder="Enter Capital Gain" required="true">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="capital_loss" class="col-sm-2 col-form-label">Capital Loss</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="capital_loss" name="capital_loss" placeholder="Enter Capital Loss" required="true">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="hours_per_week" class="col-sm-2 col-form-label">Hours per Week</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="hours_per_week" name="hours_per_week" placeholder="Enter Working Hour per Week" required="true">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="native_country" class="col-sm-2 col-form-label">Native Country</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" id="native_country" name="native_country" required="true">
+                            <option selected="true" disabled="disabled">Choose Native Country</option>
+                            <option value="1">Cambodia</option>
+                            <option value="2">Canada</option>
+                            <option value="3">China</option>
+                            <option value="4">Columbia</option>
+                            <option value="5">Cuba</option>
+                            <option value="6">Dominican-Republic</option>
+                            <option value="7">Ecuador</option>
+                            <option value="8">El-Salvador</option>
+                            <option value="9">England</option>
+                            <option value="10">France</option>
+                            <option value="11">Germany</option>
+                            <option value="12">Greece</option>
+                            <option value="13">Guatemala</option>
+                            <option value="14">Haiti</option>
+                            <option value="15">Holand-Netherlands</option>
+                            <option value="16">Honduras</option>
+                            <option value="17">Hong</option>
+                            <option value="18">Hungary</option>
+                            <option value="19">India</option>
+                            <option value="20">Iran</option>
+                            <option value="21">Ireland</option>
+                            <option value="22">Italy</option>
+                            <option value="23">Jamaica</option>
+                            <option value="24">Japan</option>
+                            <option value="25">Laos</option>
+                            <option value="26">Mexico</option>
+                            <option value="27">Nicaragua</option>
+                            <option value="28">Outlying-US(Guam-USVI-etc)</option>
+                            <option value="29">Peru</option>
+                            <option value="30">Philippines</option>
+                            <option value="31">Poland</option>
+                            <option value="32">Portugal</option>
+                            <option value="33">Puerto-Rico</option>
+                            <option value="34">Scotland</option>
+                            <option value="35">South</option>
+                            <option value="36">Taiwan</option>
+                            <option value="37">Thailand</option>
+                            <option value="38">Trinadad&Tobago</option>
+                            <option value="39">United-States</option>
+                            <option value="40">Vietnam</option>
+                            <option value="41">Yugoslavia</option>
+                            <option value="0">Unknow</option>
+                        </select>
+                    </div>
+                </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-10 offset-2">
+                      <button type="submit" class="btn btn-info">Predict Salary</button>
+                    </div>
+                  </div>
+                </form>
+          </div>
+        </main>
+    {%endblock%}  
